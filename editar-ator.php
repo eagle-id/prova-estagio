@@ -27,6 +27,11 @@ if (!empty($_POST["submit"])) {
     else
         echo "Não foi possível editar os dados de $ator->nome.<br>";
 }
+else if (!empty($_POST["deletar"])) {
+    $resultado = mysqli_query($link, "DELETE FROM Atores WHERE id = $id");
+
+    echo "$ator->nome deletado com sucesso";
+}
 
 ?>
 
@@ -37,4 +42,8 @@ if (!empty($_POST["submit"])) {
     <input id="novoNome" name="novoNome" type="text" value="<?php echo $ator->nome ?>" placeholder="Fulano" require>
 
     <input type="submit" name="submit" value="Enviar">
+</form>
+
+<form action="editar-ator.php?id=<?php echo $id ?>" method="POST">
+    <input type="submit" name="deletar" value="Deletar">
 </form>
